@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SocerTrackerProject.Code.Models
 {
-    class SignUpModel
+    class AccountModel
     {
-        private string savepath = @"C:\Users\Adam\Documents\SocerCounter\Local\Account.json";
+        private readonly string savepath = @"C:\Users\" + Environment.UserName+ @"\Documents\TrackerApp\Local\Account.json";
 
         public string SavePath { get { return savepath; } }
         public string Username { get; set; }

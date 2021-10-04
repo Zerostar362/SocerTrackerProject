@@ -7,8 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Code\Controllers\Shared\Constants\" />
-    <Folder Include="Code\Models\PersonalInformation\" />
+    <Compile Remove="Code\Controllers\Shared\Constants\**" />
+    <EmbeddedResource Remove="Code\Controllers\Shared\Constants\**" />
+    <None Remove="Code\Controllers\Shared\Constants\**" />
+    <Page Remove="Code\Controllers\Shared\Constants\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="FrameContent\" />
   </ItemGroup>
 

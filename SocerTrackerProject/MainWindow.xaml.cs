@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SocerTrackerProject.Code.Controllers;
+using SocerTrackerProject.Code.Controllers.Shared;
 
 namespace SocerTrackerProject
 {
@@ -24,6 +25,8 @@ namespace SocerTrackerProject
         public MainWindow()
         {
             InitializeComponent();
+            IOController FileControler = new IOController();
+            FileControler.CheckDirectories();
         }
 
         private void Password_GotFocus(object sender, RoutedEventArgs e)
@@ -47,14 +50,14 @@ namespace SocerTrackerProject
         {
             bool isValid = false;
             SignupController controller = new SignupController();
-            isValid = controller.sendSignUpForm(UsernameTextBox.Text, PasswordTextBox.Text);
+            isValid = controller.sendSignUpForm(UsernameTextBox.Text);
             if(isValid == true)
             {
-
+                controller.CreateUser(UsernameTextBox.Text, PasswordTextBox.Text);
             }
             else
             {
-
+                ErrorTextBlock.Text = "Username is already in use";
             }
         }
     }
