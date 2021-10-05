@@ -12,18 +12,40 @@ namespace SocerTrackerProject.Code.Controllers
     {
         public bool sendSignUpForm(string username)
         {
+            bool status = false;
             AccountModel model = new AccountModel();
             model.Username = username;
             //model.Password = Password;
-            AccountModel model1 = (AccountModel)Deserialize<AccountModel>(model.SavePath);
-            if (model1 == null)
+            List<AccountModel> accountModelsList;
+
+
+            accountModelsList = getListOfObjects<AccountModel>(model.SavePath);
+            //(List<AccountModel>)Deserialize<AccountModel>(model.SavePath);
+            if (accountModelsList == null)
             {
                 return true;
             }
             else
             {
-                if (model1.Username == model.Username) { return false; }
-                else { return true; };
+                int i = 0;
+                foreach(var model1 in accountModelsList)
+                {
+                    if (model1.Username == model.Username) { return false; }
+                    i++;
+                    if(i == accountModelsList.Count)
+                    {
+                        status = true;
+                    }
+                }
+
+                if(status == true)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 
@@ -37,7 +59,7 @@ namespace SocerTrackerProject.Code.Controllers
             model.Username = username;
             model.Password = password;
 
-            FileController.AddToExistingFile(Serialize<AccountModel>(model, model.SavePath),model.SavePath);
+            FileController.CreateFile(Serialize<AccountModel>(model, model.SavePath),model.SavePath);
         }
     }
 }

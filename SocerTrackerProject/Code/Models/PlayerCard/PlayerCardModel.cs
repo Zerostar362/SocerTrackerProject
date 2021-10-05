@@ -8,7 +8,7 @@ namespace SocerTrackerProject.Code.Models.PlayerCard
 {
     class PlayerCardModel
     {
-        private readonly string savepath = @"C:\Users\" + Environment.UserName + @"\Documents\TrackerApp\Public\PlayerCard.json";
+        private readonly string savepath = @"C:\Users\" + Environment.UserName + @"\Documents\TrackerApp\Public\PlayerCard\PlayerCard.json";
 
         public string SavePath { get { return savepath; } }
         public string NickName { get; set; }

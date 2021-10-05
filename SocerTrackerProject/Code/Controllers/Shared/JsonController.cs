@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -10,9 +11,9 @@ namespace SocerTrackerProject.Code.Controllers
 {
     class JsonController : IOController
     {
-        public JsonController() 
+        public JsonController()
         {
-            
+
         }
         /// <summary>
         ///   Serialize object data to json
@@ -23,7 +24,7 @@ namespace SocerTrackerProject.Code.Controllers
         /// <returns></returns>
         protected string Serialize<Tvalue>(object SerObj, string Path)
         {
-            string jsonString = JsonSerializer.Serialize<Tvalue>((Tvalue)SerObj);
+            string jsonString = JsonSerializer.Serialize(SerObj);
             return jsonString;
         }
 
@@ -33,19 +34,42 @@ namespace SocerTrackerProject.Code.Controllers
         /// <typeparam name="Tvalue">type of object</typeparam>
         /// <param name="Path">path to the file</param>
         /// <returns>returns object of a specified type</returns>
-        protected object Deserialize<Tvalue>(string Path)
+        protected Tvalue Deserialize<Tvalue>(string Path)
         {
             try
             {
-                object DSObject = JsonSerializer.Deserialize<Tvalue>(ReadFile(Path));
+                Tvalue DSObject = JsonSerializer.Deserialize<Tvalue>(ReadFile(Path));
                 return DSObject;
             }
             catch
             {
-                object DSObject = null;
+                Tvalue DSObject = default;
                 return DSObject;
             }
         }
 
+        /// <summary>
+        ///  Return object list of type Tvalue
+        /// </summary>
+        /// <typeparam name="Tvalue">Defines the type of object</typeparam>
+        /// <param name="Path">Sets path to folder, where are all the json files stored(of the same type(Tvalue))</param>
+        /// <returns></returns>
+        protected List<Tvalue> getListOfObjects<Tvalue>(string Path)
+        {
+            string[] FilesArr = getAllFilesFromFolder(Path);
+            int length = FilesArr.Length;
+
+            List<Tvalue> list = new List<Tvalue>();
+            var type = typeof(Tvalue);
+
+            for(int i = 0; i >= length; i++)
+            {
+                Tvalue obj = (Tvalue)Activator.CreateInstance(type);
+                obj = Deserialize<Tvalue>(FilesArr[0]);
+                list.Add(obj);
+            }
+            
+            return list;
+        }
     }
 }

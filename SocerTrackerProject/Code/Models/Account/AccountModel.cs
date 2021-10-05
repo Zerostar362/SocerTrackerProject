@@ -8,7 +8,7 @@ namespace SocerTrackerProject.Code.Models
 {
     class AccountModel
     {
-        private readonly string savepath = @"C:\Users\" + Environment.UserName+ @"\Documents\TrackerApp\Local\Account.json";
+        private readonly string savepath = @"C:\Users\" + Environment.UserName+ @"\Documents\TrackerApp\Local\Account\Account.json";
 
         public string SavePath { get { return savepath; } }
         public string Username { get; set; }
