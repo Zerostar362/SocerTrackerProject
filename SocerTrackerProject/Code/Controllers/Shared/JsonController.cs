@@ -62,10 +62,10 @@ namespace SocerTrackerProject.Code.Controllers
             List<Tvalue> list = new List<Tvalue>();
             var type = typeof(Tvalue);
 
-            for(int i = 0; i >= length; i++)
+            for(int i = 0; i <= (length - 1); i++)
             {
                 Tvalue obj = (Tvalue)Activator.CreateInstance(type);
-                obj = Deserialize<Tvalue>(FilesArr[0]);
+                obj = Deserialize<Tvalue>(FilesArr[i]);
                 list.Add(obj);
             }
             

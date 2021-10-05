@@ -29,14 +29,14 @@ namespace SocerTrackerProject
             FileControler.CheckDirectories();
         }
 
-        private void Password_GotFocus(object sender, RoutedEventArgs e)
+       /* private void Password_GotFocus(object sender, RoutedEventArgs e)
         {
             if(PasswordTextBox.Text == "Password")
             {
                 PasswordTextBox.Text = "";
             }
             
-        }
+        }*/
 
         private void Username_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -53,7 +53,13 @@ namespace SocerTrackerProject
             isValid = controller.sendSignUpForm(UsernameTextBox.Text);
             if(isValid == true)
             {
-                controller.CreateUser(UsernameTextBox.Text, PasswordTextBox.Text);
+                byte[] data = System.Text.Encoding.ASCII.GetBytes(PasswordTextBox.Password);
+                data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
+                string hash = System.Text.Encoding.ASCII.GetString(data);
+                if(controller.CreateUser(UsernameTextBox.Text, hash) == true)
+                {
+                    ErrorTextBlock.Text = "User created succesfully, proceed to login";
+                }
             }
             else
             {

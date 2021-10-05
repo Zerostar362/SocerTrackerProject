@@ -38,15 +38,13 @@
             x:Name="UsernameTextBox"
             GotFocus="Username_GotFocus"
             />
-        <TextBox
+        <PasswordBox
             Grid.Row="2"
             Grid.Column="2"
             Margin="10,50,10,10"
-            Text="Password"
-            TextAlignment="Center"
+            AllowDrop="True"
             Grid.ColumnSpan="4"
             x:Name="PasswordTextBox"
-            GotFocus="Password_GotFocus"
             />
         <Button
             Grid.Column="3"

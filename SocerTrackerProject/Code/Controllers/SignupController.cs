@@ -15,7 +15,6 @@ namespace SocerTrackerProject.Code.Controllers
             bool status = false;
             AccountModel model = new AccountModel();
             model.Username = username;
-            //model.Password = Password;
             List<AccountModel> accountModelsList;
 
 
@@ -30,6 +29,7 @@ namespace SocerTrackerProject.Code.Controllers
                 int i = 0;
                 foreach(var model1 in accountModelsList)
                 {
+                    if(model1 == null) { return true; };
                     if (model1.Username == model.Username) { return false; }
                     i++;
                     if(i == accountModelsList.Count)
@@ -48,8 +48,12 @@ namespace SocerTrackerProject.Code.Controllers
                 }
             }
         }
-
-        public void CreateUser(string username, string password)
+        /// <summary>
+        /// Creates a new user and saves him to the Account folder
+        /// </summary>
+        /// <param name="username">Username from login window</param>
+        /// <param name="password">Password from login window</param>
+        public bool CreateUser(string username, string password)
         {
             IOController FileController = new IOController();
             //checking if folderExists
@@ -59,7 +63,9 @@ namespace SocerTrackerProject.Code.Controllers
             model.Username = username;
             model.Password = password;
 
-            FileController.CreateFile(Serialize<AccountModel>(model, model.SavePath),model.SavePath);
+            string newPath = FileController.CreateFile(model.SavePath);
+            FileController.AppendToFile(Serialize<AccountModel>(model, model.SavePath), newPath);
+            return true;
         }
     }
 }

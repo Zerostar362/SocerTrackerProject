@@ -111,16 +111,20 @@ namespace SocerTrackerProject.Code.Controllers.Shared
             }
         }
 
-        public void AddToExistingFile(string ToAdd, string Path)
-        {
-            File.AppendAllText(Path, ToAdd);
-        }
-
+        /// <summary>
+        ///  Opens everything in text file, closes it aftewards
+        /// </summary>
+        /// <param name="Path">Path to file</param>
+        /// <returns>Content of a text file</returns>
         public string ReadFile(string Path)
         {
             return File.ReadAllText(Path);
         }
-
+        /// <summary>
+        ///  Gets all file names from folder
+        /// </summary>
+        /// <param name="path">Path to folder</param>
+        /// <returns>Array of file names</returns>
         public string[] getAllFilesFromFolder(string path)
         {
             if (path.Contains(".json") == true)
@@ -145,31 +149,58 @@ namespace SocerTrackerProject.Code.Controllers.Shared
             string[] AllFiles = Directory.GetFiles(path);
             return AllFiles;
         }
-
-        public void CreateFile(string strToSave, string path)
+        /// <summary>
+        /// Creates a new file with a position number, close it aftewards
+        /// </summary>
+        /// <param name="path">path to default File from model</param>
+        /// <returns>path to newly created file</returns>
+        public string CreateFile(string path)
         {
-            if (path.Contains(".json") == true)
+            string FolderPath;
+            int i = path.Length - 1;
+            int o = path.Length - 1;
+            bool status = false;
+            bool status2 = false;
+            while (status == false)
             {
-                int i = path.Length - 1;
-                bool status = false;
-                while (status == false)
+                if (path[i].ToString() == @"\")
                 {
-                    if (path[i].ToString() == @"\")
-                    {
-                        status = true;
-                    }
-                    else
-                    {
-                        i--;
-                    }
+                    status = true;
                 }
-
-                path = path.Substring(0, i);
+                else
+                {
+                    i--;
+                }
             }
-            string[] AllFiles = getAllFilesFromFolder(path);
+
+            while (status2 == false)
+            {
+                if (path[o].ToString() == @".")
+                {
+                    status2 = true;
+                }
+                else
+                {
+                    o--;
+                }
+            }
+
+            FolderPath = path.Substring(0, i);
+            string[] AllFiles = getAllFilesFromFolder(FolderPath);
+            path = path.Substring(0,o);
             string ln = AllFiles.Length.ToString();
-            strToSave = strToSave + ln;
-            File.Create(path + @"\" + strToSave);
+            path = path + ln + ".json";
+            File.Create(path).Close();
+            return path;
+        }
+        /// <summary>
+        /// Appends all text to text file
+        /// </summary>
+        /// <param name="ToAppend">Text to append into the text file</param>
+        /// <param name="path">path to file</param>
+        public void AppendToFile(string ToAppend, string path)
+        {
+            File.AppendAllText(path, ToAppend);
         }
     }
 }
