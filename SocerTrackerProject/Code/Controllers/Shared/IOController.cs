@@ -116,7 +116,7 @@ namespace SocerTrackerProject.Code.Controllers.Shared
         /// </summary>
         /// <param name="Path">Path to file</param>
         /// <returns>Content of a text file</returns>
-        public string ReadFile(string Path)
+        public static string ReadFile(string Path)
         {
             return File.ReadAllText(Path);
         }
@@ -125,7 +125,7 @@ namespace SocerTrackerProject.Code.Controllers.Shared
         /// </summary>
         /// <param name="path">Path to folder</param>
         /// <returns>Array of file names</returns>
-        public string[] getAllFilesFromFolder(string path)
+        public static string[] getAllFilesFromFolder(string path)
         {
             if (path.Contains(".json") == true)
             {
@@ -154,7 +154,7 @@ namespace SocerTrackerProject.Code.Controllers.Shared
         /// </summary>
         /// <param name="path">path to default File from model</param>
         /// <returns>path to newly created file</returns>
-        public string CreateFile(string path)
+        public static string CreateFile(string path)
         {
             string FolderPath;
             int i = path.Length - 1;
@@ -198,7 +198,7 @@ namespace SocerTrackerProject.Code.Controllers.Shared
         /// </summary>
         /// <param name="ToAppend">Text to append into the text file</param>
         /// <param name="path">path to file</param>
-        public void AppendToFile(string ToAppend, string path)
+        public static void AppendToFile(string ToAppend, string path)
         {
             File.AppendAllText(path, ToAppend);
         }

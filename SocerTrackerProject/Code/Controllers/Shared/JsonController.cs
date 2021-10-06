@@ -9,7 +9,7 @@ using SocerTrackerProject.Code.Controllers.Shared;
 
 namespace SocerTrackerProject.Code.Controllers
 {
-    class JsonController : IOController
+    class JsonController
     {
         public JsonController()
         {
@@ -22,7 +22,7 @@ namespace SocerTrackerProject.Code.Controllers
         /// <param name="SerObj">model object with inserted data</param>
         /// <param name="Path">SavePath to the File</param>
         /// <returns></returns>
-        protected string Serialize<Tvalue>(object SerObj, string Path)
+        public static string Serialize<Tvalue>(object SerObj, string Path)
         {
             string jsonString = JsonSerializer.Serialize(SerObj);
             return jsonString;
@@ -34,11 +34,11 @@ namespace SocerTrackerProject.Code.Controllers
         /// <typeparam name="Tvalue">type of object</typeparam>
         /// <param name="Path">path to the file</param>
         /// <returns>returns object of a specified type</returns>
-        protected Tvalue Deserialize<Tvalue>(string Path)
+        public static Tvalue Deserialize<Tvalue>(string Path)
         {
             try
             {
-                Tvalue DSObject = JsonSerializer.Deserialize<Tvalue>(ReadFile(Path));
+                Tvalue DSObject = JsonSerializer.Deserialize<Tvalue>(IOController.ReadFile(Path));
                 return DSObject;
             }
             catch
@@ -54,9 +54,9 @@ namespace SocerTrackerProject.Code.Controllers
         /// <typeparam name="Tvalue">Defines the type of object</typeparam>
         /// <param name="Path">Sets path to folder, where are all the json files stored(of the same type(Tvalue))</param>
         /// <returns></returns>
-        protected List<Tvalue> getListOfObjects<Tvalue>(string Path)
+        public static List<Tvalue> getListOfObjects<Tvalue>(string Path)
         {
-            string[] FilesArr = getAllFilesFromFolder(Path);
+            string[] FilesArr = IOController.getAllFilesFromFolder(Path);
             int length = FilesArr.Length;
 
             List<Tvalue> list = new List<Tvalue>();

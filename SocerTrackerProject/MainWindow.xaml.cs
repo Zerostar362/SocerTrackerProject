@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SocerTrackerProject.Code.Controllers;
 using SocerTrackerProject.Code.Controllers.Shared;
+using SocerTrackerProject.WindowContent;
 
 namespace SocerTrackerProject
 {
@@ -53,10 +54,7 @@ namespace SocerTrackerProject
             isValid = controller.sendSignUpForm(UsernameTextBox.Text);
             if(isValid == true)
             {
-                byte[] data = System.Text.Encoding.ASCII.GetBytes(PasswordTextBox.Password);
-                data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
-                string hash = System.Text.Encoding.ASCII.GetString(data);
-                if(controller.CreateUser(UsernameTextBox.Text, hash) == true)
+                if(controller.CreateUser(UsernameTextBox.Text, Encryption.encrypt(PasswordTextBox.Password)) == true)
                 {
                     ErrorTextBlock.Text = "User created succesfully, proceed to login";
                 }
@@ -65,6 +63,31 @@ namespace SocerTrackerProject
             {
                 ErrorTextBlock.Text = "Username is already in use";
             }
+        }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoginController controller = new LoginController();
+            if(controller.sendLoginForm(UsernameTextBox.Text, Encryption.encrypt(PasswordTextBox.Password)) == true)
+            {
+                ErrorTextBlock.Text = "Logging in";
+                this.Content = new MainView();
+            }
+            else
+            {
+                ErrorTextBlock.Text = "Wrong password or username";
+            }
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }

@@ -12,17 +12,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SocerTrackerProject.WindowContent.FrameContent;
 
 namespace SocerTrackerProject.WindowContent
 {
     /// <summary>
-    /// Interaction logic for HomePage.xaml
+    /// Interaction logic for MainView.xaml
     /// </summary>
-    public partial class HomePage : Page
+    public partial class MainView : Page
     {
-        public HomePage()
+        public MainView()
         {
             InitializeComponent();
+            subFrame.Content = new HomePage();
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

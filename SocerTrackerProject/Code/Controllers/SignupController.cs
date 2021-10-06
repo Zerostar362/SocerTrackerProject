@@ -10,6 +10,11 @@ namespace SocerTrackerProject.Code.Controllers
 {
     class SignupController : JsonController
     {
+        /// <summary>
+        ///  Creates a signup request
+        /// </summary>
+        /// <param name="username">sends the username fro check</param>
+        /// <returns>true means the username is free to use, false means username is already taken by another user</returns>
         public bool sendSignUpForm(string username)
         {
             bool status = false;
@@ -63,8 +68,8 @@ namespace SocerTrackerProject.Code.Controllers
             model.Username = username;
             model.Password = password;
 
-            string newPath = FileController.CreateFile(model.SavePath);
-            FileController.AppendToFile(Serialize<AccountModel>(model, model.SavePath), newPath);
+            string newPath = IOController.CreateFile(model.SavePath);
+            IOController.AppendToFile(Serialize<AccountModel>(model, model.SavePath), newPath);
             return true;
         }
     }

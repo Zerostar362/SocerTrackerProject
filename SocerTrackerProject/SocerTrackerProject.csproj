@@ -8,13 +8,13 @@
 
   <ItemGroup>
     <Compile Remove="Code\Controllers\Shared\Constants\**" />
+    <Compile Remove="FrameContent\**" />
     <EmbeddedResource Remove="Code\Controllers\Shared\Constants\**" />
+    <EmbeddedResource Remove="FrameContent\**" />
     <None Remove="Code\Controllers\Shared\Constants\**" />
+    <None Remove="FrameContent\**" />
     <Page Remove="Code\Controllers\Shared\Constants\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="FrameContent\" />
+    <Page Remove="FrameContent\**" />
   </ItemGroup>
 
   <ItemGroup>
