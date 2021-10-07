@@ -25,6 +25,8 @@ namespace SocerTrackerProject.WindowContent
         {
             InitializeComponent();
             subFrame.Content = new HomePage();
+            Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            CurrentPlayerNickName.Text = version.Major.ToString() + "." + version.Minor.ToString() +"."+ version.Build.ToString(); 
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

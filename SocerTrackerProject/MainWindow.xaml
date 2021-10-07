@@ -84,7 +84,7 @@
             
             x:Name="ErrorTextBlock"
             />
-        <Button
+            <Button
             x:Name="ExitButton"
             Grid.Column="6"
             Grid.Row="4"
@@ -92,6 +92,6 @@
             Content="Exit"
             Click="ExitButton_Click"
             />
-    </Grid>
+        </Grid>
     </Border>
 </Window>
