@@ -72,8 +72,8 @@ namespace SocerTrackerProject
             if(controller.sendLoginForm(UsernameTextBox.Text, Encryption.encrypt(PasswordTextBox.Password)) == true)
             {
                 ErrorTextBlock.Text = "Logging in";
-                session.Account = UsernameTextBox.Text;
-                this.Content = new MainView(session);
+                ActiveSession.Account = UsernameTextBox.Text;
+                this.Content = new MainView();
             }
             else
             {

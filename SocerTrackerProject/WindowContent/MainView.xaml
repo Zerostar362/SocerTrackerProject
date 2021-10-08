@@ -51,6 +51,7 @@
                 Background="#212121"
                 Foreground="White"
                 Height="30"
+                Click="MyProfileButton_Click"
                 />
             <Button
                 Content="Leaderboard"

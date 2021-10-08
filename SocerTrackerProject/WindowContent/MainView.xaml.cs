@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SocerTrackerProject.Code.Models.ActiveSession;
 using SocerTrackerProject.WindowContent.FrameContent;
+using SocerTrackerProject.WindowContent.FrameContent.PersonalInfo;
 
 namespace SocerTrackerProject.WindowContent
 {
@@ -22,6 +23,9 @@ namespace SocerTrackerProject.WindowContent
     /// </summary>
     public partial class MainView : Page
     {
+        /// <summary>
+        /// Main after login View
+        /// </summary>
         public MainView()
         {
             InitializeComponent();
@@ -29,15 +33,23 @@ namespace SocerTrackerProject.WindowContent
             Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             CurrentPlayerNickName.Text = version.Major.ToString() + "." + version.Minor.ToString() +"."+ version.Build.ToString();
         }
-
-        public void FillSession()
-        {
-            
-        }
-
+        /// <summary>
+        /// Turns off the application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+        /// <summary>
+        /// Opens the My Profile view
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MyProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            subFrame.Content = new PersonalInfoMainPage();
         }
     }
 }

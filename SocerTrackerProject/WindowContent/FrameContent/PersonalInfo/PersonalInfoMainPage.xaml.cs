@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SocerTrackerProject.Code.Models.PersonalInformation;
 using SocerTrackerProject.Code.Controllers.Shared;
+using SocerTrackerProject.Code.Models.ActiveSession;
 
 namespace SocerTrackerProject.WindowContent.FrameContent.PersonalInfo
 {
@@ -22,21 +23,37 @@ namespace SocerTrackerProject.WindowContent.FrameContent.PersonalInfo
     /// </summary>
     public partial class PersonalInfoMainPage : Page
     {
-        List<PersonalInfoModel> modelList;
+        private PersonalInfoModel model = new PersonalInfoModel();
+        /// <summary>
+        /// Creates a PersonalInfoView based on active session
+        /// </summary>
         public PersonalInfoMainPage()
         {
             InitializeComponent();
-            PersonalInfoModel model = new PersonalInfoModel();
+            
             List<PersonalInfoModel> modelList = JsonController.getListOfObjects<PersonalInfoModel>(model.SavePath);
             foreach(var profile in modelList)
             {
-               // if(profile.AccountName == )
+                if(profile == null) { continue; }
+                if(profile.AccountName == ActiveSession.Account)
+                {
+                    model = profile;
+                    break;
+                }
             }
+            PopulateBoxes();
         }
-
+        /// <summary>
+        /// Adds values to the View
+        /// </summary>
         public void PopulateBoxes()
         {
-            //NickName.Text = 
+            this.NickName.Text = model.NickName;
+            this.Number.Text   = model.Number.ToString();
+            this.ForeName.Text = model.ForeName;
+            this.Name.Text     = model.Name;
+            this.Strong.Text   = model.BiggestWeapon;
+            this.Weak.Text     = model.BiggestFear;
         }
     }
 }

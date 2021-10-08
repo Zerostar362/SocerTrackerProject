@@ -77,9 +77,11 @@ namespace SocerTrackerProject.Code.Controllers
             cardModel.AccountName = username;
 
             string newPath = IOController.CreateFile(model.SavePath);
-            IOController.CreateFile(persModel.SavePath);
-            IOController.CreateFile(cardModel.SavePath);
+            string persPath = IOController.CreateFile(persModel.SavePath);
+            string carPath = IOController.CreateFile(cardModel.SavePath);
             IOController.AppendToFile(Serialize<AccountModel>(model, model.SavePath), newPath);
+            IOController.AppendToFile(Serialize<PersonalInfoModel>(persModel, persModel.SavePath), persPath);
+            IOController.AppendToFile(Serialize<PlayerCardModel>(cardModel, cardModel.SavePath), carPath);
             return true;
         }
     }

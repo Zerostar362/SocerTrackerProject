@@ -139,5 +139,11 @@
             Margin="10,0,0,0"
             x:Name="Weak"
             />
+        <Button
+            Content="Edit character"
+            Grid.Row="7"
+            Grid.Column="7"
+            Margin="10,15,10,15"
+            />
     </Grid>
 </Page>

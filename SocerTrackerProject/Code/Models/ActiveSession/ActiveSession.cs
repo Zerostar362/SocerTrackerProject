@@ -6,8 +6,20 @@ using System.Threading.Tasks;
 
 namespace SocerTrackerProject.Code.Models.ActiveSession
 {
-    class ActiveSession
+    /// <summary>
+    /// Static active session model
+    /// Class with global acces
+    /// Important information like active logged in account is stored here
+    /// !!!IMPORTANT BE CAREFUL WHEN MANIPULATING WITH ACTIVE ACCOUNT, IT'S USED TO
+    /// GET THE RIGHT DATA FILES AND IS CURRENTLY THE ONLY THING THAT TIES IT UP!!!
+    /// </summary>
+    public static class ActiveSession
     {
-        public string Account { get; set; }
+        public static string Account { get; set; }
+
+        static ActiveSession() 
+        {
+            
+        }
     }
 }
