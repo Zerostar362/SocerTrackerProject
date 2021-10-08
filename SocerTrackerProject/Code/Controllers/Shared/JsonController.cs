@@ -7,7 +7,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using SocerTrackerProject.Code.Controllers.Shared;
 
-namespace SocerTrackerProject.Code.Controllers
+namespace SocerTrackerProject.Code.Controllers.Shared
 {
     class JsonController
     {

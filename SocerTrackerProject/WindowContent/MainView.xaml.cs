@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SocerTrackerProject.Code.Models.ActiveSession;
 using SocerTrackerProject.WindowContent.FrameContent;
 
 namespace SocerTrackerProject.WindowContent
@@ -26,7 +27,12 @@ namespace SocerTrackerProject.WindowContent
             InitializeComponent();
             subFrame.Content = new HomePage();
             Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            CurrentPlayerNickName.Text = version.Major.ToString() + "." + version.Minor.ToString() +"."+ version.Build.ToString(); 
+            CurrentPlayerNickName.Text = version.Major.ToString() + "." + version.Minor.ToString() +"."+ version.Build.ToString();
+        }
+
+        public void FillSession()
+        {
+            
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

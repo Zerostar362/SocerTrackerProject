@@ -17,5 +17,6 @@ namespace SocerTrackerProject.Code.Models.PersonalInformation
         public int Number { get; set; }
         public string BiggestWeapon { get; set; }
         public string BiggestFear { get; set; }
+        public string AccountName { get; set; }
     }
 }

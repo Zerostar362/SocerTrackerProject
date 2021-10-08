@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SocerTrackerProject.Code.Models.PersonalInformation;
+using SocerTrackerProject.Code.Controllers.Shared;
 
 namespace SocerTrackerProject.WindowContent.FrameContent.PersonalInfo
 {
@@ -20,9 +22,21 @@ namespace SocerTrackerProject.WindowContent.FrameContent.PersonalInfo
     /// </summary>
     public partial class PersonalInfoMainPage : Page
     {
+        List<PersonalInfoModel> modelList;
         public PersonalInfoMainPage()
         {
             InitializeComponent();
+            PersonalInfoModel model = new PersonalInfoModel();
+            List<PersonalInfoModel> modelList = JsonController.getListOfObjects<PersonalInfoModel>(model.SavePath);
+            foreach(var profile in modelList)
+            {
+               // if(profile.AccountName == )
+            }
+        }
+
+        public void PopulateBoxes()
+        {
+            //NickName.Text = 
         }
     }
 }

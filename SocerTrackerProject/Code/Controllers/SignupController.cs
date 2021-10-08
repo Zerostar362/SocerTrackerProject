@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using SocerTrackerProject.Code.Models;
 using SocerTrackerProject.Code.Controllers.Shared;
+using SocerTrackerProject.Code.Models.PersonalInformation;
+using SocerTrackerProject.Code.Models.PlayerCard;
 
 namespace SocerTrackerProject.Code.Controllers
 {
@@ -45,16 +47,16 @@ namespace SocerTrackerProject.Code.Controllers
 
                 if(status == true)
                 {
-                    return true;
+                    return false;
                 }
                 else
                 {
-                    return false;
+                    return true;
                 }
             }
         }
         /// <summary>
-        /// Creates a new user and saves him to the Account folder
+        /// Creates a new user with all the dependecies, that means personalInfo car, player card etc.
         /// </summary>
         /// <param name="username">Username from login window</param>
         /// <param name="password">Password from login window</param>
@@ -64,11 +66,19 @@ namespace SocerTrackerProject.Code.Controllers
             //checking if folderExists
             FileController.CheckDirectories();
             AccountModel model = new AccountModel();
+            PersonalInfoModel persModel = new PersonalInfoModel();
+            PlayerCardModel cardModel = new PlayerCardModel();
 
             model.Username = username;
             model.Password = password;
 
+            persModel.AccountName = username;
+
+            cardModel.AccountName = username;
+
             string newPath = IOController.CreateFile(model.SavePath);
+            IOController.CreateFile(persModel.SavePath);
+            IOController.CreateFile(cardModel.SavePath);
             IOController.AppendToFile(Serialize<AccountModel>(model, model.SavePath), newPath);
             return true;
         }

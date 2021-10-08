@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SocerTrackerProject.Code.Controllers;
 using SocerTrackerProject.Code.Controllers.Shared;
+using SocerTrackerProject.Code.Models.ActiveSession;
 using SocerTrackerProject.WindowContent;
 
 namespace SocerTrackerProject
@@ -71,7 +72,8 @@ namespace SocerTrackerProject
             if(controller.sendLoginForm(UsernameTextBox.Text, Encryption.encrypt(PasswordTextBox.Password)) == true)
             {
                 ErrorTextBlock.Text = "Logging in";
-                this.Content = new MainView();
+                session.Account = UsernameTextBox.Text;
+                this.Content = new MainView(session);
             }
             else
             {

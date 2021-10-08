@@ -21,5 +21,7 @@ namespace SocerTrackerProject.Code.Models.PlayerCard
         public int MostGamesWonWithNum { get; set; }
         public string MostGamesLostWith { get; set; }//playername
         public int MostGamesLostWithNum { get; set; }
+
+        public string AccountName { get; set; }
     }
 }
