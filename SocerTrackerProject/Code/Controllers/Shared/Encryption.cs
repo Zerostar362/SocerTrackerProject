@@ -8,6 +8,12 @@ namespace SocerTrackerProject.Code.Controllers.Shared
 {
     public class Encryption
     {
+        /// <summary>
+        /// Encrypt string
+        /// </summary>
+        /// <param name="str">string to encrypt</param>
+        /// <returns>encrypted string</returns>
+        /// <example>string Password = Encryption.encrypt("Password")</example>
         public static string encrypt(string str)
         {
             byte[] data = Encoding.ASCII.GetBytes(str);

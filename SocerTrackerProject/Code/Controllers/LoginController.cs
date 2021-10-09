@@ -22,7 +22,7 @@ namespace SocerTrackerProject.Code.Controllers
             model.Username = username;
             model.Password = password;
 
-            List<AccountModel> list = JsonController.getListOfObjects<AccountModel>(model.SavePath);
+            List<AccountModel> list = JsonController.getListOfObjects<AccountModel>(model.defaultSavePath);
 
             bool status = false;
 

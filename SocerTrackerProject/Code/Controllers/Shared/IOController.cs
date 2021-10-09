@@ -202,5 +202,10 @@ namespace SocerTrackerProject.Code.Controllers.Shared
         {
             File.AppendAllText(path, ToAppend);
         }
+
+        public static void DeleteTextFromFile(string path)
+        {
+            File.WriteAllText(path, string.Empty);
+        }
     }
 }

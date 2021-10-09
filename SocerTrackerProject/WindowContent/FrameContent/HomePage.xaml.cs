@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SocerTrackerProject.Code.Models.ActiveSession;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace SocerTrackerProject.WindowContent.FrameContent
         public HomePage()
         {
             InitializeComponent();
+            ActiveSession.ClearFrameHistory();
         }
     }
 }

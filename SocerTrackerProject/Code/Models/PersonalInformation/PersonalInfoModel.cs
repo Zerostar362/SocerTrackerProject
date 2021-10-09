@@ -10,7 +10,8 @@ namespace SocerTrackerProject.Code.Models.PersonalInformation
     {
         private readonly string savepath = @"C:\Users\" + Environment.UserName + @"\Documents\TrackerApp\Local\PersonalInfo\PersonalInfo.json";
 
-        public string SavePath { get { return savepath; } }
+        public string defaultSavePath { get { return savepath; } }
+        public string SavePath { get; set; }
         public string Name { get; set; }
         public string NickName { get; set; }
         public string ForeName { get; set; }

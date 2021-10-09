@@ -25,7 +25,7 @@ namespace SocerTrackerProject.Code.Controllers
             List<AccountModel> accountModelsList;
 
 
-            accountModelsList = getListOfObjects<AccountModel>(model.SavePath);
+            accountModelsList = getListOfObjects<AccountModel>(model.defaultSavePath);
             //(List<AccountModel>)Deserialize<AccountModel>(model.SavePath);
             if (accountModelsList == null)
             {
@@ -76,12 +76,18 @@ namespace SocerTrackerProject.Code.Controllers
 
             cardModel.AccountName = username;
 
-            string newPath = IOController.CreateFile(model.SavePath);
-            string persPath = IOController.CreateFile(persModel.SavePath);
-            string carPath = IOController.CreateFile(cardModel.SavePath);
-            IOController.AppendToFile(Serialize<AccountModel>(model, model.SavePath), newPath);
-            IOController.AppendToFile(Serialize<PersonalInfoModel>(persModel, persModel.SavePath), persPath);
-            IOController.AppendToFile(Serialize<PlayerCardModel>(cardModel, cardModel.SavePath), carPath);
+            string newPath = IOController.CreateFile(model.defaultSavePath);
+            model.SavePath = newPath;
+
+            string persPath = IOController.CreateFile(persModel.defaultSavePath);
+            persModel.SavePath = persPath;
+
+            string carPath = IOController.CreateFile(cardModel.defaultSavePath);
+            cardModel.SavePath = carPath;
+
+            IOController.AppendToFile(Serialize<AccountModel>(model, model.defaultSavePath), newPath);
+            IOController.AppendToFile(Serialize<PersonalInfoModel>(persModel, persModel.defaultSavePath), persPath);
+            IOController.AppendToFile(Serialize<PlayerCardModel>(cardModel, cardModel.defaultSavePath), carPath);
             return true;
         }
     }

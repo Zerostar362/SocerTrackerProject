@@ -30,7 +30,9 @@ namespace SocerTrackerProject.WindowContent.FrameContent.PersonalInfo
         public PersonalInfoMainPage()
         {
             InitializeComponent();
-            
+
+            ActiveSession.ClearFrameHistory();
+
             List<PersonalInfoModel> modelList = JsonController.getListOfObjects<PersonalInfoModel>(model.SavePath);
             foreach(var profile in modelList)
             {
@@ -54,6 +56,11 @@ namespace SocerTrackerProject.WindowContent.FrameContent.PersonalInfo
             this.Name.Text     = model.Name;
             this.Strong.Text   = model.BiggestWeapon;
             this.Weak.Text     = model.BiggestFear;
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            ActiveSession.subFrame.Content = new PersonalInfoEditPage();
         }
     }
 }

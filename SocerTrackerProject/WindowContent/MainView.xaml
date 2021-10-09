@@ -17,7 +17,8 @@
             <ColumnDefinition Width="75"/>
             <ColumnDefinition Width="75"/>
             <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
@@ -95,7 +96,7 @@
             />
 
         <Frame
-            x:Name="subFrame"
+            x:Name="frame"
             Grid.Column="2"
             Grid.RowSpan="3"
             NavigationUIVisibility="Hidden"

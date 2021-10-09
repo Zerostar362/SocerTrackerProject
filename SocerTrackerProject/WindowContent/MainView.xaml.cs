@@ -29,9 +29,10 @@ namespace SocerTrackerProject.WindowContent
         public MainView()
         {
             InitializeComponent();
-            subFrame.Content = new HomePage();
+            frame.Content = new HomePage();
             Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             CurrentPlayerNickName.Text = version.Major.ToString() + "." + version.Minor.ToString() +"."+ version.Build.ToString();
+            ActiveSession.subFrame = frame;
         }
         /// <summary>
         /// Turns off the application
@@ -49,7 +50,7 @@ namespace SocerTrackerProject.WindowContent
         /// <param name="e"></param>
         private void MyProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            subFrame.Content = new PersonalInfoMainPage();
+            ActiveSession.subFrame.Content = new PersonalInfoMainPage();
         }
     }
 }
