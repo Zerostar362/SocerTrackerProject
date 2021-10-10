@@ -5,7 +5,7 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
 	  <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
-	  <Version>1.0.0</Version>
+	  <Version>1.0.1</Version>
 	  <AssemblyVersion>0.1.*</AssemblyVersion>
 	  <Deterministic>false</Deterministic>
   </PropertyGroup>
@@ -13,20 +13,20 @@
   <ItemGroup>
     <Compile Remove="Code\Controllers\Shared\Constants\**" />
     <Compile Remove="FrameContent\**" />
+    <Compile Remove="WindowContent\Resources\**" />
     <EmbeddedResource Remove="Code\Controllers\Shared\Constants\**" />
     <EmbeddedResource Remove="FrameContent\**" />
+    <EmbeddedResource Remove="WindowContent\Resources\**" />
     <None Remove="Code\Controllers\Shared\Constants\**" />
     <None Remove="FrameContent\**" />
+    <None Remove="WindowContent\Resources\**" />
     <Page Remove="Code\Controllers\Shared\Constants\**" />
     <Page Remove="FrameContent\**" />
+    <Page Remove="WindowContent\Resources\**" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="WindowContent\Resources\" />
   </ItemGroup>
 
 </Project>

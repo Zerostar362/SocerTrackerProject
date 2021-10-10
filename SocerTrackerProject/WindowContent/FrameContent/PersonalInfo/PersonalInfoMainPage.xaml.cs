@@ -34,7 +34,9 @@ namespace SocerTrackerProject.WindowContent.FrameContent.PersonalInfo
             Update();
             PopulateBoxes();
         }
-
+        /// <summary>
+        /// Updates the actual data in View
+        /// </summary>
         private void Update()
         {
             List<PersonalInfoModel> modelList = JsonController.getListOfObjects<PersonalInfoModel>(model.defaultSavePath);
@@ -64,6 +66,16 @@ namespace SocerTrackerProject.WindowContent.FrameContent.PersonalInfo
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             ActiveSession.subFrame.Content = new PersonalInfoEditPage();
+        }
+        /// <summary>
+        /// Refresh the data in View
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RefreshButtonClick(object sender, RoutedEventArgs e) 
+        {
+            Update();
+            PopulateBoxes();
         }
     }
 }

@@ -35,16 +35,17 @@
             VerticalAlignment="Center"
             />
 
-        <StackPanel
+            <StackPanel
             Grid.ColumnSpan="2"
             Grid.Row="1"
             >
-            <Button
+                <Button
                 Content="Home"
                 BorderThickness="0"
                 Background="#212121"
                 Foreground="White"
                 Height="30"
+                Click="onHomeButton_Click"
                 />
             <Button
                 Content="My profile"
@@ -75,7 +76,7 @@
                 Foreground="White"
                 Height="30"
                 />
-            <Button
+                <Button
                 x:Name="Exit"
                 Content="Logout and Exit"
                 BorderThickness="0"
@@ -84,7 +85,7 @@
                 Height="30"
                 Click="Exit_Click"
                 />
-        </StackPanel>
+            </StackPanel>
 
         <TextBlock
             Grid.Column="0"

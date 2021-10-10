@@ -30,8 +30,15 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Button
+            Grid.Row="7"
+            Grid.Column="6"
+            Content="Refresh"
+            Margin="10,15,10,15"
+            Click="RefreshButtonClick"
+            />
         <TextBlock
-            Text="Nickname"
+            Text="Nickname:"
             Foreground="White"
             FontSize="35"
             Grid.ColumnSpan="2"
@@ -39,7 +46,7 @@
             Margin="10,0,0,0"
             />
         <TextBlock
-            Text="Name"
+            Text="Name:"
             Foreground="White"
             FontSize="35"
             Grid.ColumnSpan="2"
@@ -47,7 +54,7 @@
             Margin="10,0,0,0"
             />
         <TextBlock
-            Text="Forename"
+            Text="Forename:"
             Foreground="White"
             FontSize="35"
             Grid.ColumnSpan="2"
@@ -55,7 +62,7 @@
             Margin="10,0,0,0"
             />
         <TextBlock
-            Text="Number"
+            Text="Number:"
             Foreground="White"
             FontSize="35"
             Grid.ColumnSpan="2"
@@ -63,7 +70,7 @@
             Margin="10,0,0,0"
             />
         <TextBlock
-            Text="Strong in"
+            Text="Strong in:"
             Foreground="White"
             FontSize="35"
             Grid.ColumnSpan="2"
@@ -71,7 +78,7 @@
             Margin="10,0,0,0"
             />
         <TextBlock
-            Text="Weakness"
+            Text="Weakness:"
             Foreground="White"
             FontSize="35"
             Grid.ColumnSpan="2"

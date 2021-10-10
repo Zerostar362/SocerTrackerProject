@@ -31,8 +31,13 @@ namespace SocerTrackerProject.WindowContent
             InitializeComponent();
             frame.Content = new HomePage();
             Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            CurrentPlayerNickName.Text = version.Major.ToString() + "." + version.Minor.ToString() +"."+ version.Build.ToString();
+            CurrentPlayerNickName.Text = ActiveSession.Account;
+            //CurrentPlayerNickName.Text = "Version: " + version.Major.ToString() + "." + version.Minor.ToString() +"."+ version.Build.ToString();
             ActiveSession.subFrame = frame;
+        }
+        private void onHomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            ActiveSession.subFrame.Content = new HomePage();
         }
         /// <summary>
         /// Turns off the application

@@ -69,14 +69,14 @@ namespace SocerTrackerProject
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             LoginController controller = new LoginController();
-            if(controller.sendLoginForm(UsernameTextBox.Text, Encryption.encrypt(PasswordTextBox.Password)) == true)
+            if (controller.sendLoginForm(UsernameTextBox.Text, Encryption.encrypt(PasswordTextBox.Password)) == true)
             {
                 ErrorTextBlock.Text = "Logging in";
                 ActiveSession.Account = UsernameTextBox.Text;
                 this.Content = new MainView();
             }
-            else
-            {
+            else 
+            { 
                 ErrorTextBlock.Text = "Wrong password or username";
             }
         }
