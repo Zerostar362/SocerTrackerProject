@@ -31,19 +31,22 @@ namespace SocerTrackerProject.WindowContent.FrameContent.PersonalInfo
         {
             InitializeComponent();
 
-            ActiveSession.ClearFrameHistory();
+            Update();
+            PopulateBoxes();
+        }
 
-            List<PersonalInfoModel> modelList = JsonController.getListOfObjects<PersonalInfoModel>(model.SavePath);
-            foreach(var profile in modelList)
+        private void Update()
+        {
+            List<PersonalInfoModel> modelList = JsonController.getListOfObjects<PersonalInfoModel>(model.defaultSavePath);
+            foreach (var profile in modelList)
             {
-                if(profile == null) { continue; }
-                if(profile.AccountName == ActiveSession.Account)
+                if (profile == null) { continue; }
+                if (profile.AccountName == ActiveSession.Account)
                 {
                     model = profile;
                     break;
                 }
             }
-            PopulateBoxes();
         }
         /// <summary>
         /// Adds values to the View

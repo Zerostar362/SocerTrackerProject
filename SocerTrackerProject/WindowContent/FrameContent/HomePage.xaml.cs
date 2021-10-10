@@ -24,7 +24,6 @@ namespace SocerTrackerProject.WindowContent.FrameContent
         public HomePage()
         {
             InitializeComponent();
-            ActiveSession.ClearFrameHistory();
         }
     }
 }

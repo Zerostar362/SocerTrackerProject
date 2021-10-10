@@ -36,10 +36,10 @@ namespace SocerTrackerProject.WindowContent.FrameContent.PersonalInfo
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             int num;
-            if(NickName.Text == "" 
+            if(NickName.Text != "" 
                 && Name.Text != "" 
                 && ForeName.Text != "" 
-                && Int32.TryParse(Number.Text,out num) != true  
+                && Int32.TryParse(Number.Text,out num) != false  
                 && Strong.Text != "" 
                 && Weak.Text != "")
             {
@@ -54,9 +54,11 @@ namespace SocerTrackerProject.WindowContent.FrameContent.PersonalInfo
                     model.Number = num;
                     model.BiggestWeapon = Strong.Text;
                     model.BiggestFear = Weak.Text;
+                    model.AccountName = ActiveSession.Account;
                     List<PersonalInfoModel> list = JsonController.getListOfObjects<PersonalInfoModel>(model.defaultSavePath);
                     foreach (var item in list)
                     {
+                        if (item == null) continue;
                         if(item.AccountName == ActiveSession.Account)
                         {
                             model.SavePath = item.SavePath;
@@ -76,6 +78,7 @@ namespace SocerTrackerProject.WindowContent.FrameContent.PersonalInfo
             {
                 MessageBox.Show("All the fields has to be filled!");
             }
+            ActiveSession.subFrame.GoBack();
         }
     }
 }

@@ -30,22 +30,5 @@ namespace SocerTrackerProject.Code.Models.ActiveSession
         { 
 
         }
-        /// <summary>
-        /// Main page code use only
-        /// It clears the frame history and dispose objects that are no longer needed
-        /// </summary>
-        public static void ClearFrameHistory()
-        {
-            if (!subFrame.CanGoBack && subFrame.CanGoForward)
-            {
-                return;
-            }
-
-            var entry = subFrame.RemoveBackEntry();
-            while (entry != null)
-            {
-                entry = subFrame.RemoveBackEntry();
-            }
-        }
     }
 }
