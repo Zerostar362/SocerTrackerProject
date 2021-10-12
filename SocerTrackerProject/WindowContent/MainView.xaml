@@ -69,7 +69,7 @@
                 Foreground="White"
                 Height="30"
                 />
-            <Button
+                <Button
                 Content="Personal settings"
                 BorderThickness="0"
                 Background="#212121"

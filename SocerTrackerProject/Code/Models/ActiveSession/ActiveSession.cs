@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using SocerTrackerProject.Code.Models.PersonalInformation;
+using SocerTrackerProject.Code.Models.PlayerCard;
 
 namespace SocerTrackerProject.Code.Models.ActiveSession
 {
@@ -17,6 +19,9 @@ namespace SocerTrackerProject.Code.Models.ActiveSession
     public static class ActiveSession
     {
         public static string Account { get; set; }
+        public static string IPaddress { get; set; }
+        public static string SerializedInfoModel { get; set; }
+        public static string SerializedCardModel { get; set; }
         /// <summary>
         ///   Frame content to switch View content to any page we need is globaly accessible withing this
         ///static object.

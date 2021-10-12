@@ -8,6 +8,8 @@
 	  <Version>1.0.1</Version>
 	  <AssemblyVersion>0.1.*</AssemblyVersion>
 	  <Deterministic>false</Deterministic>
+	  <ApplicationIcon />
+	  <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,6 +29,10 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Code\Controllers\Networking\TCP\" />
   </ItemGroup>
 
 </Project>

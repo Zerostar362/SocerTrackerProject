@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using SocerTrackerProject.Code.Models.ActiveSession;
 using SocerTrackerProject.WindowContent.FrameContent;
 using SocerTrackerProject.WindowContent.FrameContent.PersonalInfo;
+using SocerTrackerProject.Code.Controllers.Networking.UDP;
 
 namespace SocerTrackerProject.WindowContent
 {
@@ -34,6 +35,8 @@ namespace SocerTrackerProject.WindowContent
             CurrentPlayerNickName.Text = ActiveSession.Account;
             //CurrentPlayerNickName.Text = "Version: " + version.Major.ToString() + "." + version.Minor.ToString() +"."+ version.Build.ToString();
             ActiveSession.subFrame = frame;
+            Task.Run(() => UDPListenerServer.startListener());
+            Task.Run(() => UDPFinderServer.scanNetwork());
         }
         private void onHomeButton_Click(object sender, RoutedEventArgs e)
         {
