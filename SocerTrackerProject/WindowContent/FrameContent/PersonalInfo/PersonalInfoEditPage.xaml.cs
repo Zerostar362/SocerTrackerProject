@@ -64,8 +64,8 @@ namespace SocerTrackerProject.WindowContent.FrameContent.PersonalInfo
                             model.SavePath = item.SavePath;
                             IOController.DeleteTextFromFile(item.SavePath);
                             
-                            IOController.AppendToFile(JsonController.Serialize<PersonalInfoModel>(model, item.SavePath),item.SavePath);
-                            ActiveSession.SerializedInfoModel = JsonController.Serialize<PersonalInfoModel>(model, item.SavePath);
+                            IOController.AppendToFile(JsonController.Serialize<PersonalInfoModel>(model),item.SavePath);
+                            ActiveSession.SerializedInfoModel = JsonController.Serialize<PersonalInfoModel>(model);
                             break;
                         }
                     }

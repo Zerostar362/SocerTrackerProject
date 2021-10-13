@@ -22,10 +22,30 @@ namespace SocerTrackerProject.Code.Controllers.Shared
         /// <param name="SerObj">model object with inserted data</param>
         /// <param name="Path">SavePath to the File</param>
         /// <returns></returns>
-        public static string Serialize<Tvalue>(object SerObj, string Path)
+        public static string Serialize<Tvalue>(object SerObj)
         {
             string jsonString = JsonSerializer.Serialize(SerObj);
             return jsonString;
+        }
+
+        public static string SerializeFile<Tvalue>(object SerObj)
+        {
+            string jsonString = JsonSerializer.Serialize(SerObj);
+            return jsonString;
+        }
+
+        public static TValue DeserializeFile<TValue>(string SerializedString)
+        {
+            try
+            {
+                TValue DSobject = JsonSerializer.Deserialize<TValue>(SerializedString);
+                return DSobject;
+            }
+            catch
+            {
+                TValue DSObject = default;
+                return DSObject;
+            }
         }
 
         /// <summary>

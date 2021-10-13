@@ -16,6 +16,7 @@ using SocerTrackerProject.Code.Models.ActiveSession;
 using SocerTrackerProject.WindowContent.FrameContent;
 using SocerTrackerProject.WindowContent.FrameContent.PersonalInfo;
 using SocerTrackerProject.Code.Controllers.Networking.UDP;
+using SocerTracker.Code.Controllers.Networking.UDP;
 
 namespace SocerTrackerProject.WindowContent
 {
@@ -37,6 +38,7 @@ namespace SocerTrackerProject.WindowContent
             ActiveSession.subFrame = frame;
             Task.Run(() => UDPListenerServer.startListener());
             Task.Run(() => UDPFinderServer.scanNetwork());
+            Task.Run(() => UDPDataReceiver.startDataListener());
         }
         private void onHomeButton_Click(object sender, RoutedEventArgs e)
         {

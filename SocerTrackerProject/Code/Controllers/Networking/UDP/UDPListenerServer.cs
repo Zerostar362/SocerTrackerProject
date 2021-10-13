@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.Net;
 using System.Net.NetworkInformation;
+using SocerTrackerProject.Code.Models.ActiveSession;
+using SocerTrackerProject.Code.Controllers.Shared;
+using SocerTracker.Code.Controllers.Networking.UDP;
 
 namespace SocerTrackerProject.Code.Controllers.Networking.UDP
 {
@@ -13,7 +16,7 @@ namespace SocerTrackerProject.Code.Controllers.Networking.UDP
     
     class UDPListenerServer
     {
-        UdpClient listener;
+        //UdpClient listener;
         private const int listenPort = 64459;
 
         public UDPListenerServer() 
@@ -53,10 +56,13 @@ namespace SocerTrackerProject.Code.Controllers.Networking.UDP
 
                     if(groupEP.Address.ToString() != GetLocalIPv4(NetworkInterfaceType.Ethernet)) 
                     {
-                        //what happens when other computer sends his info
+                        if(Encoding.ASCII.GetString(bytes, 0, bytes.Length) == "SocerTrackerPing")
+                        {
+                            Task.Run(() => UDPDataRequesterServer.RequestData(groupEP.Address.ToString()));
+                        }
                     }
-                    Console.WriteLine($"Received broadcast from {groupEP}");
-                    Console.WriteLine($"{Encoding.ASCII.GetString(bytes, 0, bytes.Length)}");
+                    //Console.WriteLine($"Received broadcast from {groupEP}");
+                    //Console.WriteLine($"{Encoding.ASCII.GetString(bytes, 0, bytes.Length)}");
                 }
             }
             catch (SocketException e)

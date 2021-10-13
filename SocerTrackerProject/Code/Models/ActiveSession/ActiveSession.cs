@@ -18,6 +18,7 @@ namespace SocerTrackerProject.Code.Models.ActiveSession
     /// </summary>
     public static class ActiveSession
     {
+        public static List<ForeignSessions> ForeignSessionsList;
         public static string Account { get; set; }
         public static string IPaddress { get; set; }
         public static string SerializedInfoModel { get; set; }
@@ -34,6 +35,36 @@ namespace SocerTrackerProject.Code.Models.ActiveSession
         static ActiveSession()
         { 
 
+        }
+
+        public static bool CheckListForAccount(string AccountName)
+        {
+            foreach(var item in ForeignSessionsList)
+            {
+                if(item.Account == AccountName)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    public class ActiveSessionClone
+    {
+        public string Account { get; set; }
+        public string IPaddress { get; set; }
+        public string SerializedInfoModel { get; set; }
+        public string SerializedCardModel { get; set; }
+
+        public static Frame subFrame = null;
+
+        public ActiveSessionClone()
+        {
+            /* ActiveSession.Account = Account;
+            ActiveSession.IPaddress = IPaddress;
+            ActiveSession.SerializedInfoModel = SerializedInfoModel;
+            ActiveSession.SerializedCardModel = SerializedCardModel;*/
         }
     }
 }

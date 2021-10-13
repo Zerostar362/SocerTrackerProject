@@ -60,7 +60,7 @@ namespace SocerTrackerProject.Code.Controllers.Networking.UDP
             string ip = SwapToBroadcast(GetLocalIPv4(NetworkInterfaceType.Ethernet));
             IPAddress broadcast = IPAddress.Parse(ip);
 
-            string toSend = GetLocalIPv4(NetworkInterfaceType.Ethernet);
+            string toSend = "SocerTrackerPing";
 
             byte[] sendbuf = Encoding.ASCII.GetBytes(toSend.ToCharArray());
 
@@ -75,7 +75,7 @@ namespace SocerTrackerProject.Code.Controllers.Networking.UDP
             timer.Start();
             while (true)
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(30000);//ticks every 30 sec
                 sendPacket();
             }
         }
