@@ -73,6 +73,7 @@ namespace SocerTrackerProject
             {
                 ErrorTextBlock.Text = "Logging in";
                 ActiveSession.Account = UsernameTextBox.Text;
+                ActiveSession.LoadProperties();
                 this.Content = new MainView();
             }
             else 

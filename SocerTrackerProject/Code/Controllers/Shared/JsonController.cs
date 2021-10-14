@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using SocerTrackerProject.Code.Controllers.Shared;
+using SocerTrackerProject.Code.Models;
 
 namespace SocerTrackerProject.Code.Controllers.Shared
 {

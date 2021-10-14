@@ -59,7 +59,7 @@ namespace SocerTrackerProject.Code.Controllers.Networking.UDP
                         if(Encoding.ASCII.GetString(bytes, 0, bytes.Length) == "SocerTrackerPing")
                         {
                             Task.Run(() => UDPDataRequesterServer.RequestData(groupEP.Address.ToString()));
-                            Task.Run(() => UDPDataRequesterServer.SendData(groupEP.Address.ToString()));
+                            Task.Run(() => UDPDataSender.sendData(groupEP.Address.ToString()));
                         }
                     }
                     //Console.WriteLine($"Received broadcast from {groupEP}");

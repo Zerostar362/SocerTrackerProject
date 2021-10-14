@@ -155,12 +155,11 @@ namespace SocerTracker.Code.Controllers.Networking.UDP
             {
                 while (true)
                 {
-                    byte[] bytes = listener.Receive(ref groupEP);
+                     byte[] bytes = listener.Receive(ref groupEP);
 
                     if (groupEP.Address.ToString() != GetLocalIPv4(NetworkInterfaceType.Ethernet))
                     {
-                        if (Encoding.ASCII.GetString(bytes, 0, bytes.Length) == "SocerTrackerPing")
-                        {
+                        string test = Encoding.ASCII.GetString(bytes, 0, bytes.Length);
                             ActiveSessionClone JsonSessionClone = JsonController.DeserializeFile<ActiveSessionClone>(Encoding.ASCII.GetString(bytes, 0, bytes.Length));
                             if (!ActiveSession.CheckListForAccount(JsonSessionClone.Account))
                             {
@@ -172,7 +171,7 @@ namespace SocerTracker.Code.Controllers.Networking.UDP
 
                                 ActiveSession.ForeignSessionsList.Add(sessions);
                             }
-                        }
+                        
                     }
                     //Console.WriteLine($"Received broadcast from {groupEP}");
                     //Console.WriteLine($"{Encoding.ASCII.GetString(bytes, 0, bytes.Length)}");
