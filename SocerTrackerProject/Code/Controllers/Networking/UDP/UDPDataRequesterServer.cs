@@ -1,5 +1,4 @@
-﻿using SocerTrackerProject.Code.Controllers.Networking.UDP;
-using SocerTrackerProject.Code.Controllers.Shared;
+﻿using SocerTrackerProject.Code.Controllers.Shared;
 using SocerTrackerProject.Code.Models.ActiveSession;
 using System;
 using System.Collections.Generic;
@@ -159,7 +158,7 @@ namespace SocerTracker.Code.Controllers.Networking.UDP
 
                     if (groupEP.Address.ToString() != GetLocalIPv4(NetworkInterfaceType.Ethernet))
                     {
-                        string test = Encoding.ASCII.GetString(bytes, 0, bytes.Length);
+                        //string test = Encoding.ASCII.GetString(bytes, 0, bytes.Length);
                             ActiveSessionClone JsonSessionClone = JsonController.DeserializeFile<ActiveSessionClone>(Encoding.ASCII.GetString(bytes, 0, bytes.Length));
                             if (!ActiveSession.CheckListForAccount(JsonSessionClone.Account))
                             {

@@ -1,24 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net;
-using System.Net.Sockets;
-using System.Net.NetworkInformation;
 using System.Diagnostics;
+using System.Linq;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
+using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 
-namespace SocerTrackerProject.Code.Controllers.Networking.UDP
+namespace SocerTracker.Code.Controllers.Networking.UDP
 {
-    //this server will constanly send finder packets to LAN
-    class UDPFinderServer
+    class UDPpingServer
     {
-        private const int port = 64459;
-        public UDPFinderServer()
-        {
-            
-        }
+        private const int sendPort = 64459;
+        private const int listenPort = 64459;
 
         private static string GetLocalIPv4(NetworkInterfaceType _type)
         {
@@ -42,9 +38,9 @@ namespace SocerTrackerProject.Code.Controllers.Networking.UDP
         private static string SwapToBroadcast(string ip)
         {
             char[] characterArr = ".".ToCharArray();
-            for(int i = ip.Length - 1; i > 0; i--)
+            for (int i = ip.Length - 1; i > 0; i--)
             {
-                if(ip[i] == characterArr[0])
+                if (ip[i] == characterArr[0])
                 {
                     ip = ip.Substring(0, i + 1) + "255";
                     return ip;
@@ -64,11 +60,11 @@ namespace SocerTrackerProject.Code.Controllers.Networking.UDP
 
             byte[] sendbuf = Encoding.ASCII.GetBytes(toSend.ToCharArray());
 
-            IPEndPoint ep = new IPEndPoint(broadcast, port);
+            IPEndPoint ep = new IPEndPoint(broadcast, sendPort);
 
             s.SendTo(sendbuf, ep);
         }
-        
+
         public static void scanNetwork()
         {
             Stopwatch timer = new Stopwatch();
@@ -78,6 +74,40 @@ namespace SocerTrackerProject.Code.Controllers.Networking.UDP
                 Thread.Sleep(30000);//ticks every 30 sec
                 sendPacket();
             }
+        }
+
+        public static void startListener()
+        {
+            UdpClient listener = new UdpClient(listenPort);
+            IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, listenPort);
+
+            try
+            {
+                while (true)
+                {
+                    byte[] bytes = listener.Receive(ref groupEP);
+
+                    if (groupEP.Address.ToString() != GetLocalIPv4(NetworkInterfaceType.Ethernet))
+                    {
+                        if (Encoding.ASCII.GetString(bytes, 0, bytes.Length) == "SocerTrackerPing")
+                        {
+                            //Task.Run(() => UDPDataRequesterServer.RequestData(groupEP.Address.ToString()));
+                            //Task.Run(() => UDPDataSender.sendData(groupEP.Address.ToString()));
+                        }
+                    }
+                    //Console.WriteLine($"Received broadcast from {groupEP}");
+                    //Console.WriteLine($"{Encoding.ASCII.GetString(bytes, 0, bytes.Length)}");
+                }
+            }
+            catch (SocketException e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                listener.Close();
+            }
+
         }
     }
 }
